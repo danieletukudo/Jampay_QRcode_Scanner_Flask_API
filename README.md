@@ -1,6 +1,7 @@
 
 # Real Time Barcode Detector and Text Extractor Web App
 
+![Barcode Detection Example](image.png)
 This project is a real-time barcode detection and text extraction web application built using Flask, OpenCV, and TensorFlow. It captures video from a webcam, detects barcodes, decodes the text embedded in the barcodes, and displays the decoded text on the video stream. The application is optimized for real-time performance, making it suitable for various interactive applications.
 
 ## Features
