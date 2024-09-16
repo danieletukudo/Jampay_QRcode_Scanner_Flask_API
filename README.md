@@ -1,8 +1,8 @@
 
-# Real Time Barcode Detector and Text Extractor Web App
+# Real Time QR code Detector and Text Extractor Web App
 
 ![Barcode Detection Example](image.png)
-This project is a real-time barcode detection and text extraction web application built using Flask, OpenCV, and TensorFlow. It captures video from a webcam, detects barcodes, decodes the text embedded in the barcodes, and displays the decoded text on the video stream. The application is optimized for real-time performance, making it suitable for various interactive applications.
+This project is a real-time QR code detection and text extraction web application built using Flask, OpenCV and pyzbar. It captures video from a webcam, detects barcodes, decodes the text embedded in the barcodes, and displays the decoded text on the video stream. The application is optimized for real-time performance, making it suitable for various interactive applications.
 
 ## Features
 
@@ -39,13 +39,13 @@ pip install flask opencv-python numpy pyzbar
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/danieletukudo/Real-Time-Barcode-Detector-and-Text-Extractor-Web-App.git
+    git clone https://github.com/danieletukudo/Real-Time-QRcode-Detector-and-Text-Extractor-Web-App.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd barcode-detector
+    cd Real-Time-QRcode-Detector-and-Text-Extractor-Web-App
     ```
 
 3. Install the required packages:
@@ -79,12 +79,12 @@ pip install flask opencv-python numpy pyzbar
 
 ## Class Overview
 
-### `BarcodeDetector`
+### `QrcodeDetector`
 
-- **Purpose**: Captures video from the webcam, detects barcodes, decodes their content, and annotates the video feed with the decoded text.
+- **Purpose**: Captures video from the webcam, detects QRcodes, decodes their content, and annotates the video feed with the decoded text.
 - **Methods**:
   - `__init__()`: Initializes the video capture and sets the camera resolution.
-  - `gen_frames()`: Captures frames, detects barcodes, decodes and annotates the frames, and yields them for streaming.
+  - `gen_frames()`: Captures frames, detects QRcodes, decodes and annotates the frames, and yields them for streaming.
 
 ## Contributing
 

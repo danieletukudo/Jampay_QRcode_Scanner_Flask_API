@@ -8,10 +8,10 @@ from pyzbar.pyzbar import decode
 app = Flask(__name__)
 
 
-class BarcodeDetector:
+class QRcodeDetector:
     """
-    A class used to represent a Barcode Detector that captures video from a webcam,
-    detects barcodes in the frames, decodes the text in the barcodes, and displays
+    A class used to represent a QRcode Detector that captures video from a webcam,
+    detects QRcodes in the frames, decodes the text in the QRcodes, and displays
     the text on the frame.
 
     Attributes
@@ -24,13 +24,13 @@ class BarcodeDetector:
     Methods
     -------
     gen_frames()
-        Captures video frames, detects and decodes barcodes, annotates the frames,
+        Captures video frames, detects and decodes QRcodes, annotates the frames,
         and yields them for streaming.
     """
 
     def __init__(self):
         """
-        Initializes the BarcodeDetector with a video capture object and sets the
+        Initializes the QRcode Detector with a video capture object and sets the
         camera resolution.
         """
         self.camera = cv2.VideoCapture(0)
@@ -39,7 +39,7 @@ class BarcodeDetector:
 
     def gen_frames(self):
         """
-        Generator function that captures video frames, detects barcodes,
+        Generator function that captures video frames, detects QRcodes,
         decodes the text, annotates the frames with the decoded text, and
         yields the frames for streaming.
 
@@ -54,17 +54,17 @@ class BarcodeDetector:
                 break  # Exit if there's a problem with the camera feed
 
             # Detect and decode barcodes in the frame
-            for barcode in decode(frame):
+            for QRcode in decode(frame):
                 # Decode barcode data
-                mydata = barcode.data.decode('utf-8')
+                mydata = QRcode.data.decode('utf-8')
 
                 # Get barcode polygon points and draw it on the frame
-                points = np.array([barcode.polygon], np.int32)
+                points = np.array([QRcode.polygon], np.int32)
                 points = points.reshape((-1, 1, 2))
                 cv2.polylines(frame, [points], True, (255, 0, 255), 3)
 
                 # Get the bounding box of the barcode and put the text on the frame
-                rect = barcode.rect
+                rect = QRcode.rect
                 cv2.putText(frame, mydata, (rect[0], rect[1]), cv2.FONT_HERSHEY_SIMPLEX,
                             1, (225, 0, 255), 4)
 
@@ -100,7 +100,7 @@ def video_feed():
     Response
         The streaming response containing the video frames.
     """
-    detector = BarcodeDetector()
+    detector = QRcodeDetector()
     return Response(detector.gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
